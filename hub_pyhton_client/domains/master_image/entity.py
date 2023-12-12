@@ -15,6 +15,7 @@ class MasterImage(BaseModel):
     created_at: datetime
     updated_at: datetime
 
+
 class MasterImageEventContext(DomainEventBaseContext):
     type: str = f"{DomainType.MASTER_IMAGE}"
     data: MasterImage
