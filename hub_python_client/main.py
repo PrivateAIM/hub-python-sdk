@@ -1,4 +1,4 @@
-from hub_pyhton_client import MasterImageAPI
+from hub_python_client import MasterImageAPI
 import asyncio
 from yarl import URL
 #test
