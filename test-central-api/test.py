@@ -28,7 +28,7 @@ async def main():
 
     async with aiohttp.ClientSession() as session:
         #token = await get_token(session, token_url, secrets, _id)
-        html = await fetch(session, 'https://dev.personalhealthtrain.de/api/user-secrets')
+        html = await fetch(session, 'https://dev.personalhealthtrain.de/api/stations')
         print(html)
 if __name__ == '__main__':
     asyncio.run(main())
