@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from ..constants import DomainType
-from ..ecosystem.constants import Ecosystem
-from ..proposal import Proposal
-from ..type-base import DomainEventBaseContext
+from .constants import DomainType
+from .ecosystem.constants import Ecosystem
+from .proposal import Proposal
+from .type-base import DomainEventBaseContext
 
 
 class Registry:
