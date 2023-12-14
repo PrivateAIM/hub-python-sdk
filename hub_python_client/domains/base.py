@@ -1,5 +1,5 @@
 import aiohttp
-
+import asyncio
 
 class BaseAPI:
     def __init__(self, username=None, password=None, base_url=None):
@@ -16,3 +16,7 @@ class BaseAPI:
             self.client = aiohttp.ClientSession(base_url=self.base_url,
                                                 auth=aiohttp.BasicAuth(self.username,
                                                                        self.password))
+
+    async def close(self):
+        # Assuming `self.client` is an instance of `ClientSession`
+        await self.client.close()

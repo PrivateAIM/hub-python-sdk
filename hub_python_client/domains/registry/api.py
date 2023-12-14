@@ -3,44 +3,26 @@ import asyncio
 
 from ..base import BaseAPI
 from .entity import Registry
-from .types-base import CollectionResourceResponse, SingleResourceResponse
-from .utils import nullifyEmptyObjectProperties
+from ..utils import nullify_empty_object_properties
 
 
 class RegistryAPI(BaseAPI):
-    async def getMany(
-            self,
-
-    ):
+    async def getMany(self):
         response = await self.client.get(f'registries')
         return response.data
 
-    async def getOne(
-            self,
-            id: str,
-
-    ) :
+    async def getOne(self,id: str):
         response = await self.client.get(f'registries/{id}')
         return response.data
 
-    async def create(
-            self,
-            data: dict[str, Any]
-    ) :
-        response = await self.client.post('registries', nullifyEmptyObjectProperties(data))
+    async def create(self,data: dict[str, Any]):
+        response = await self.client.post('registries', nullify_empty_object_properties(data))
         return response.data
 
-    async def update(
-            self,
-            id: str,
-            data: dict[str, Any]
-    ) :
-        response = await self.client.post(f'registries/{id}', nullifyEmptyObjectProperties(data))
+    async def update(self,id: str,data: dict[str, Any]):
+        response = await self.client.post(f'registries/{id}', nullify_empty_object_properties(data))
         return response.data
 
-    async def delete(
-            self,
-            id: str
-    ) :
+    async def delete(self,id: str):
         response = await self.client.delete(f'registries/{id}')
         return response.data
