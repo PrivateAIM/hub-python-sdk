@@ -1,15 +1,15 @@
 from ..base import BaseAPI
-from .entity import MasterImage
+from .entity import MasterImage ,MasterImageManyResponse
 from .constants import MasterImageCommand
-from typing import Optional, Dict, Any
+
 
 class MasterImageAPI(BaseAPI):
-    async def get_many(self):
+    async def get_many(self) -> MasterImageManyResponse:
         response = await self.client.get('/api/master-images')
         response_json = await response.json()
         return response_json
 
-    async def get_one(self, id: str):
+    async def get_one(self, id: str) -> MasterImage:
         response = await self.client.get(f'/api/master-images/{id}')
         response_json = await response.json()
         return response_json

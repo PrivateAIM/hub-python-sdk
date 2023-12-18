@@ -1,8 +1,8 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from pydantic import BaseModel
 from ..constants import DomainType
-from ..types_base import DomainEventBaseContext
+from ..types_base import DomainEventBaseContext, Meta
 
 class MasterImage(BaseModel):
     id: str
@@ -19,3 +19,8 @@ class MasterImage(BaseModel):
 class MasterImageEventContext(DomainEventBaseContext):
     type: str = f"{DomainType.MASTER_IMAGE}"
     data: MasterImage
+
+
+class MasterImageManyResponse(BaseModel):
+    data: List[MasterImage]
+    meta: Meta
