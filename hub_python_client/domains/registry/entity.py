@@ -1,7 +1,7 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 from ..ecosystem import Ecosystem
-from ..types_base import DomainEventBaseContext
+from ..types_base import DomainEventBaseContext, Meta
 from pydantic import BaseModel
 
 
@@ -15,6 +15,12 @@ class Registry(BaseModel):
     created_at: datetime
     updated_at: datetime
 
+
 class RegistryEventContext(DomainEventBaseContext):
     type: str
     data: Registry
+
+
+class RegistryManyResponse(BaseModel):
+    data: List[Registry]
+    meta: Meta
