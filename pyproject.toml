@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "hub-python-sdk"
+version = "0.1.0"
+description = ""
+authors = ["davidhieber <david.hieber@uni-tuebingen.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+yarl = "^1.9.4"
+aiohttp = "^3.9.1"
+pydantic = "^2.5.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
