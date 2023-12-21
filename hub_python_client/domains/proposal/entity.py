@@ -1,9 +1,11 @@
-from typing import Optional, List
-from pydantic import BaseModel
 from datetime import datetime
+from typing import List, Optional
+
+from pydantic import BaseModel
+
 from ..constants import DomainType
-from ..types_base import DomainEventBaseContext, Meta
 from ..master_image import MasterImage
+from ..types_base import DomainEventBaseContext, Meta
 from .constants import ProposalRisk
 
 
@@ -21,6 +23,14 @@ class Proposal(BaseModel):
 
     master_image_id: Optional[str]
     master_image: Optional[MasterImage]
+
+
+class ProposalCreate(BaseModel):
+    title: str
+    requested_data: str
+    risk: ProposalRisk
+    risk_comment: str
+    master_image_id: Optional[str]
 
 
 class ProposalEventContext(DomainEventBaseContext):
