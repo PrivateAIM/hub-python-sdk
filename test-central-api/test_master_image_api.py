@@ -9,12 +9,9 @@ from hub_python_client import MasterImageAPI
 class TestMasterImageAPI(unittest.TestCase):
     def setUp(self):
         load_dotenv()
-        username = os.getenv('USERNAME')
-        password = os.getenv('PASSWORD')
+        username = os.getenv('USERNAME_ROBOT')
+        password = os.getenv('PASSWORD_ROBOT')
         base_url = URL(os.getenv('BASE_URL'))
-        #username = '5c239847-591a-4087-a48f-226cc02f5dd0'
-        #password = 'Erfj1O_pQxG.Ew1ywnmkCrMjzNxYsxqVj5fd7qaqF4Ow.noXesyU0Auci49SStpM'
-        #base_url = URL('https://dev.personalhealthtrain.de')
         self.loop = asyncio.get_event_loop()
 
         self.api = MasterImageAPI(username, password, base_url)
