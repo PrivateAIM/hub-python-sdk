@@ -28,9 +28,10 @@ class Proposal(BaseModel):
 class ProposalCreate(BaseModel):
     title: str
     requested_data: str
-    risk: ProposalRisk
+    risk: str
     risk_comment: str
-    master_image_id: Optional[str]
+    #master_image_id: Optional[str]
+
 
 
 class ProposalEventContext(DomainEventBaseContext):

@@ -1,5 +1,6 @@
-import aiohttp
+# import aiohttp
 import asyncio
+import httpx
 
 
 class BaseAPI:
@@ -12,12 +13,11 @@ class BaseAPI:
         loop.run_until_complete(self.set_client(self.client))
 
     async def set_client(self, client):
-        if isinstance(client, aiohttp.ClientSession):
+        if isinstance(client, httpx.AsyncClient):
             self.client = client
         else:
-            self.client = aiohttp.ClientSession(base_url=self.base_url,
-                                                auth=aiohttp.BasicAuth(self.username,
-                                                                       self.password))
+            self.client = httpx.AsyncClient(base_url=self.base_url,
+                                            auth = httpx.BasicAuth(self.username, self.password))
 
     async def close(self):
         # Assuming `self.client` is an instance of `ClientSession`
