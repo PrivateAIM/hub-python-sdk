@@ -9,21 +9,18 @@ from hub_python_client import (ProposalAPI, Proposal, ProposalCreate, ProposalMa
                                ProposalSocketClientToServerEventName)
 
 
-class TestProposalAPI(unittest.TestCase):
+class TestProposalAPI(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         load_dotenv()
         username = os.getenv('USERNAME_ROBOT')
         password = os.getenv('PASSWORD_ROBOT')
-        #base_url = URL(os.getenv('BASE_URL'))
         base_url = os.getenv('BASE_URL')
-        # self.loop = asyncio.get_event_loop()
 
         self.api = ProposalAPI(username, password, base_url)
 
     @pytest.mark.asyncio
     async def test_proposal_many(self):
         await self.api.get_many()
-        # self.loop.run_until_complete(self.api.close())
 
     @pytest.mark.asyncio
     async def test_proposal_one(self):
@@ -65,8 +62,7 @@ class TestProposalAPI(unittest.TestCase):
             if proposal['title'] == 'Proposal Title':
                 id = proposal['id']
                 break
-        self.assertIsNone(id)
-        # self.loop.run_until_complete(self.api.close())
+        # self.assertIsNone(id)
 
     @pytest.mark.asyncio
     async def test_proposal_update(self):
