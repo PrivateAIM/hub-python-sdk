@@ -9,8 +9,6 @@ class BaseAPI:
         self.password = password
         self.base_url = base_url
         self.client = None
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.set_client(self.client))
 
     async def set_client(self, client):
         if isinstance(client, httpx.AsyncClient):
@@ -19,6 +17,6 @@ class BaseAPI:
             self.client = httpx.AsyncClient(base_url=self.base_url,
                                             auth = httpx.BasicAuth(self.username, self.password))
 
-    async def close(self):
-        # Assuming `self.client` is an instance of `ClientSession`
-        await self.client.close()
+    # async def close(self):
+    #     # Assuming `self.client` is an instance of `ClientSession`
+    #     await self.client.close()

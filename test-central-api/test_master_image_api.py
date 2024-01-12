@@ -18,19 +18,19 @@ class TestMasterImageAPI(unittest.TestCase):
 
     def test_master_many_images(self):
         self.loop.run_until_complete(self.api.get_many())
-        self.loop.run_until_complete(self.api.close())
+        # self.loop.run_until_complete(self.api.close())
 
     def test_master_one_images(self):
         master_images = self.loop.run_until_complete(self.api.get_many())
         print(master_images)
         self.loop.run_until_complete(self.api.get_one(master_images['data'][0]['id']))
-        self.loop.run_until_complete(self.api.close())
+        # self.loop.run_until_complete(self.api.close())
 
     def test_master_delete_images(self):
         master_images = self.loop.run_until_complete(self.api.get_many())
         print(master_images)
         self.loop.run_until_complete(self.api.delete(master_images['data'][0]['id']))
-        self.loop.run_until_complete(self.api.close())
+        # self.loop.run_until_complete(self.api.close())
 
 
 if __name__ == '__main__':
