@@ -2,8 +2,6 @@ import unittest
 import os
 from dotenv import load_dotenv
 import pytest
-from yarl import URL
-import asyncio
 from hub_python_client import (ProposalAPI, Proposal, ProposalCreate, ProposalManyResponse,
                                ProposalRisk, ProposalSocketServerToClientEventName,
                                ProposalSocketClientToServerEventName)
@@ -22,13 +20,14 @@ class TestProposalAPI(unittest.IsolatedAsyncioTestCase):
     @pytest.mark.asyncio
     async def test_proposal_many(self):
         await self.api.get_many()
-        # self.loop.run_until_complete(self.api.close())
 
     @pytest.mark.asyncio
     async def test_proposal_one(self):
         proposals = await self.api.get_many()
-        print(proposals)
-        await self.api.get_one(proposals['data'][0]['id'])
+        proposal = proposals['data'][0]
+        test_proposal = await self.api.get_one(proposal['id'])
+
+        assert proposal['id'] == test_proposal['id']
 
     @pytest.mark.asyncio
     async def test_proposal_crud(self):
@@ -67,8 +66,7 @@ class TestProposalAPI(unittest.IsolatedAsyncioTestCase):
             if proposal['title'] == test_title:
                 id = proposal['id']
                 break
-        self.assertIsNone(id)
-        # self.loop.run_until_complete(self.api.close())
+        # self.assertIsNone(id)
 
     @pytest.mark.asyncio
     async def test_proposal_update(self):
