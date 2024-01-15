@@ -9,14 +9,13 @@ from hub_python_client import (ProposalAPI, Proposal, ProposalCreate, ProposalMa
                                ProposalSocketClientToServerEventName)
 
 
-class TestProposalAPI(unittest.TestCase):
+class TestProposalAPI(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         load_dotenv()
+
         username = os.getenv('USERNAME_ROBOT')
         password = os.getenv('PASSWORD_ROBOT')
-        #base_url = URL(os.getenv('BASE_URL'))
         base_url = os.getenv('BASE_URL')
-        # self.loop = asyncio.get_event_loop()
 
         self.api = ProposalAPI(username, password, base_url)
 
@@ -34,11 +33,13 @@ class TestProposalAPI(unittest.TestCase):
     @pytest.mark.asyncio
     async def test_proposal_crud(self):
         # Create
+        test_title = "Proposal Title test"
         proposal = ProposalCreate(
-            title="Proposal Title",
+            title=test_title,
             requested_data="Requested Data add more length to this",
-            risk="low",
-            risk_comment="No risk comment   add more length to this"
+            risk=ProposalRisk.LOW,
+            risk_comment="No risk comment   add more length to this",
+            master_image_id=" "
         )
 
         proposal = await self.api.create(proposal)
@@ -48,7 +49,7 @@ class TestProposalAPI(unittest.TestCase):
         print(proposals)
 
         for proposal in proposals['data']:
-            if proposal['title'] == 'Proposal Title':
+            if proposal['title'] == test_title:
                 id = proposal['id']
                 break
         self.assertIsNotNone(id)
@@ -60,9 +61,10 @@ class TestProposalAPI(unittest.TestCase):
         # Delete
         await self.api.delete(id)
         # check delete
+        id = None
         proposals = await self.api.get_many()
         for proposal in proposals['data']:
-            if proposal['title'] == 'Proposal Title':
+            if proposal['title'] == test_title:
                 id = proposal['id']
                 break
         self.assertIsNone(id)

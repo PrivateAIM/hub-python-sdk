@@ -28,10 +28,12 @@ class Proposal(BaseModel):
 class ProposalCreate(BaseModel):
     title: str
     requested_data: str
-    risk: str
+    risk: ProposalRisk
     risk_comment: str
-    #master_image_id: Optional[str]
+    master_image_id: Optional[str]
 
+    class Config:
+        use_enum_values = True
 
 
 class ProposalEventContext(DomainEventBaseContext):

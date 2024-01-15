@@ -16,20 +16,20 @@ class ProposalAPI(BaseAPI):
         return response_json
 
     async def create(self, data: ProposalCreate) -> Proposal:
-        headers = {"Content-Type": "application/json"}
-        response = await self.client.post("/api/proposals", json=data, headers=headers)
-        print(response.text)
+        headers={"content-type": "application/json"}
+        response = await self.client.post("/api/proposals", json=data.model_dump(), headers=headers)
+        print("create  "+ response.text)
         response_json = response.json()
         return response_json
 
     async def update(self, id: str, data: ProposalCreate) -> Proposal:
         response = await self.client.post(f"/api/proposals/{id}", json=data)
-        print(response.text)
+        print("update" + response.text)
         response_json = response.json()
         return response_json
 
     async def delete(self, id: str) -> Proposal:
         response = await self.client.delete(f"/api/proposals/{id}")
-        print(response.text)
+        print("delete"+ response.text)
         response_json = response.json()
         return response_json
