@@ -38,7 +38,7 @@ class TestProposalAPI(unittest.IsolatedAsyncioTestCase):
             requested_data="Requested Data add more length to this",
             risk=ProposalRisk.LOW,
             risk_comment="No risk comment   add more length to this",
-            master_image_id=" "
+            master_image_id=None
         )
 
         proposal = await self.api.create(proposal)
@@ -46,40 +46,34 @@ class TestProposalAPI(unittest.IsolatedAsyncioTestCase):
         # Read
         proposals = await self.api.get_many()
         print(proposals)
-
+        proposal_id = None
         for proposal in proposals['data']:
             if proposal['title'] == test_title:
-                id = proposal['id']
+                proposal_id = proposal['id']
                 break
-        self.assertIsNotNone(id)
+        self.assertIsNotNone(proposal_id)
 
         # read one
-        await self.api.get_one(id)
+        proposal = await self.api.get_one(proposal_id)
         # Update
-        # TODO: Update
+        update_risk_comment=  "this is a change to the risk comment"
+        proposal['risk_comment'] = update_risk_comment
+        proposal = await self.api.update(proposal_id, proposal)
+
+        self.assertEqual(proposal['risk_comment'], update_risk_comment)
+
+
         # Delete
-        await self.api.delete(id)
+        await self.api.delete(proposal_id)
         # check delete
-        id = None
+        proposal_id = None
         proposals = await self.api.get_many()
         for proposal in proposals['data']:
             if proposal['title'] == test_title:
-                id = proposal['id']
+                proposal_id = proposal['id']
                 break
-        # self.assertIsNone(id)
+        self.assertIsNone(proposal_id)
 
-    @pytest.mark.asyncio
-    async def test_proposal_update(self):
-        proposal_update = ProposalCreate(...)  # Fill in with appropriate data
-        proposal_id = '...'  # Fill in with appropriate id
-        await self.api.update(proposal_id, proposal_update)
-        # self.loop.run_until_complete(self.api.close())
-
-    @pytest.mark.asyncio
-    async def test_proposal_delete(self):
-        proposal_id = '...'  # Fill in with appropriate id
-        await self.api.delete(proposal_id)
-        # self.loop.run_until_complete(self.api.close())
 
 
 if __name__ == '__main__':
