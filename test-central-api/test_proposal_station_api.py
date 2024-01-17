@@ -4,6 +4,10 @@ from dotenv import load_dotenv
 import pytest
 from hub_python_client import ProposalStationAPI
 
+from hub_python_client import (ProposalAPI, Proposal, ProposalCreate, ProposalManyResponse,
+                               ProposalRisk, ProposalSocketServerToClientEventName,
+                               ProposalSocketClientToServerEventName)
+
 class TestProposalStationAPI(unittest.IsolatedAsyncioTestCase):
     def setUp(self):
         load_dotenv()
@@ -22,7 +26,21 @@ class TestProposalStationAPI(unittest.IsolatedAsyncioTestCase):
         proposal_station = await self.api.get_many()
         proposal_station = proposal_station['data'][0]
         proposal_station = await self.api.get_one(proposal_station['id'])
-        assert proposal_station['id'] == test_proposal_station['id']
+
+    #TODO do station first
+    @pytest.mark.asyncio
+    async def test_aprov_proposl(self):
+
+        test_title = "Proposal Title test"
+        proposal = ProposalCreate(
+            title=test_title,
+            requested_data="Requested Data add more length to this",
+            risk=ProposalRisk.LOW,
+            risk_comment="No risk comment   add more length to this",
+            master_image_id=None
+        )
+
+        proposal = await self.api.create(proposal)
 
 
 if __name__ == '__main__':

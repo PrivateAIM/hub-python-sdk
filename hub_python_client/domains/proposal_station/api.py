@@ -7,12 +7,14 @@ class ProposalStationAPI(BaseAPI):
         response = await self.client.get("/api/proposal-stations")
         response.raise_for_status()
         response_json = response.json()
+        print(f"many {response_json}")
         return response_json
 
     async def get_one(self, id: str) -> ProposalStation:
         response = await self.client.get(f"/api/proposal-stations/{id}")
         response.raise_for_status()
         response_json = response.json()
+        print(f"one {response_json}")
         return response_json
 
     async def create(self, data: ProposalStationCreate) -> ProposalStation:
