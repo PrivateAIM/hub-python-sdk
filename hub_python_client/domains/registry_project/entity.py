@@ -29,7 +29,7 @@ class RegistryProject(BaseModel):
 
 
 class RegistryProjectEventContext(DomainEventBaseContext):
-    type: DomainType.REGISTRY_PROJECT
+    type: str = f"{DomainType.REGISTRY_PROJECT}"
     data: RegistryProject
 
 

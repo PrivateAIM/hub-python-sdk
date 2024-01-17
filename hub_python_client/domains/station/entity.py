@@ -26,5 +26,5 @@ class Station(BaseModel):
 
 
 class StationEventContext(DomainEventBaseContext):
-    type: DomainType.STATION
+    type: str =  f"{DomainType.STATION}"
     data: Station
