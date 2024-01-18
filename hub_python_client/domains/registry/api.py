@@ -4,11 +4,11 @@ from ..utils import nullify_empty_object_properties
 
 
 class RegistryAPI(BaseAPI):
-    async def getMany(self)-> RegistryManyResponse:
+    async def get_many(self)-> RegistryManyResponse:
         response = await self.client.get('/api/registries')
         return response.json()
 
-    async def getOne(self, id: str)-> Registry:
+    async def get_one(self, id: str)-> Registry:
         response = await self.client.get(f'/api/registries/{id}')
         return response.json()
 

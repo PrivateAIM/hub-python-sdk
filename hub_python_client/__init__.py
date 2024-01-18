@@ -4,3 +4,4 @@ from .domains import (ProposalAPI, Proposal, ProposalCreate, ProposalManyRespons
                       ProposalSocketServerToClientEventName, ProposalSocketClientToServerEventName)
 from .domains import ProposalStationAPI
 from .domains import StationAPI, Station
+from .domains import RegistryAPI, Registry
