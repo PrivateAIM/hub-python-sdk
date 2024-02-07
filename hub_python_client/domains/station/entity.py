@@ -24,6 +24,7 @@ class Station(BaseModel):
     created_at: datetime
     updated_at: datetime
 
+
 class StationCreate(BaseModel):
     external_name: Optional[str] = None
     name: str
@@ -31,6 +32,19 @@ class StationCreate(BaseModel):
     hidden: bool = False
     registry_id: str
 
+
+class StationUpdate(BaseModel):
+    id: str
+    external_name: Optional[str] = None
+    name: str
+    public_key: Optional[str] = None
+    ecosystem: Optional[Ecosystem] = "tue"
+    hidden: bool = False
+    registry_id: str
+    registry_project_id: Optional[str] = None
+    realm_id: str
+
+
 class StationEventContext(DomainEventBaseContext):
-    type: str =  f"{DomainType.STATION}"
+    type: str = f"{DomainType.STATION}"
     data: Station

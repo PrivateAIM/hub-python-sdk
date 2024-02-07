@@ -7,5 +7,7 @@ from .proposal import ProposalAPI, Proposal, ProposalCreate, ProposalManyRespons
 from .proposal_station import ProposalStationAPI
 from .ecosystem import Ecosystem
 from .utils import nullify_empty_object_properties
-from .station import StationAPI, Station
+from .station import StationAPI, Station , StationCreate
 from .registry import RegistryAPI, Registry
+
+

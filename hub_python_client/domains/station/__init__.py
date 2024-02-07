@@ -1,2 +1,2 @@
-from .entity import Station
+from .entity import Station , StationCreate
 from .api import StationAPI

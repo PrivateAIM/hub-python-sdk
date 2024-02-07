@@ -3,5 +3,5 @@ from .domains import MasterImageGroupAPI
 from .domains import (ProposalAPI, Proposal, ProposalCreate, ProposalManyResponse, ProposalRisk,
                       ProposalSocketServerToClientEventName, ProposalSocketClientToServerEventName)
 from .domains import ProposalStationAPI
-from .domains import StationAPI, Station
+from .domains import StationAPI, Station , StationCreate
 from .domains import RegistryAPI, Registry

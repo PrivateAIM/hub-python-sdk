@@ -20,13 +20,14 @@ class StationAPI(BaseAPI):
         return response_json
 
     async def create(self, data: StationCreate) -> SingleResourceResponse[Station]:
-        response = await self.client.post("/api/stations", json=nullify_empty_object_properties(data))
+        print(data)
+        response = await self.client.post("/api/stations", json=data.model_dump())
         response.raise_for_status()
         response_json = response.json()
         return response_json
 
     async def update(self, id: str, data: Dict[str, Any]) -> SingleResourceResponse[Station]:
-        response = await self.client.post(f"/api/stations/{id}", json=nullify_empty_object_properties(data))
+        response = await self.client.post(f"/api/stations/{id}", json=data)
         response.raise_for_status()
         response_json = response.json()
         return response_json
