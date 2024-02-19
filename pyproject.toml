@@ -12,6 +12,7 @@ aiohttp = "^3.9.1"
 pydantic = "^2.5.2"
 python-dotenv = "^1.0.0"
 httpx = "^0.26.0"
+authup = {git = "https://github.com/authup/python-sdk.git"}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
