@@ -20,7 +20,6 @@ class StationAPI(BaseAPI):
         return response_json
 
     async def create(self, data: StationCreate) -> SingleResourceResponse[Station]:
-        print(data)
         response = await self.client.post("/api/stations", json=data.model_dump())
         response.raise_for_status()
         response_json = response.json()

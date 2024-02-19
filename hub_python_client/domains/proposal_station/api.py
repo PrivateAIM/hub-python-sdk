@@ -18,13 +18,14 @@ class ProposalStationAPI(BaseAPI):
         return response_json
 
     async def create(self, data: ProposalStationCreate) -> ProposalStation:
-        response = await self.client.post("/api/proposal-stations", json=data)
+        response = await self.client.post("/api/proposal-stations", json=data.model_dump())
+        print(f"create {response}")
         response.raise_for_status()
         response_json = response.json()
         return response_json
 
-    async def update(self, id: str, data: ProposalStationUpdate) -> ProposalStation:
-        response = await self.client.post(f"/api/proposal-stations/{id}", json=data)
+    async def update(self, id: str, data: ProposalStation) -> ProposalStation:
+        response = await self.client.post(f"/api/proposal-stations/{id}", json=data.model_dump())
         response.raise_for_status()
         response_json = response.json()
         return response_json

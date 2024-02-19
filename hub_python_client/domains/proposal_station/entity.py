@@ -20,16 +20,20 @@ class ProposalStation(BaseModel):
     proposal: Proposal
     proposal_realm_id: str
     station_id: str
-    station: Station
     station_realm_id: str
+
+    class Config:
+        use_enum_values = True
 
 
 class ProposalStationCreate(BaseModel):
-    approval_status: Optional[ProposalStationApprovalStatus]
-    comment: Optional[str]
+    approval_status: Optional[ProposalStationApprovalStatus] = None
+    comment: Optional[str] = None
     proposal_id: str
     station_id: str
 
+    class Config:
+        use_enum_values = True
 
 class ProposalStationUpdate(BaseModel):
     approval_status: Optional[ProposalStationApprovalStatus]
