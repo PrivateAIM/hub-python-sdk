@@ -2,6 +2,7 @@
 name = "hub-python-sdk"
 version = "0.1.0"
 description = ""
+license = "Apache-2.0"
 authors = ["davidhieber <david.hieber@uni-tuebingen.de>"]
 readme = "README.md"
 
