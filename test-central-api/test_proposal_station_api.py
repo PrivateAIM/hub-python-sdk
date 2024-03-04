@@ -20,14 +20,14 @@ class TestProposalStationAPI(unittest.IsolatedAsyncioTestCase):
 
     @pytest.mark.asyncio
     async def test_get_proposal_station(self):
-        response = await self.api.get_many()
+        response = await self.api_proposal_station.get_many()
         print(response)
 
     @pytest.mark.asyncio
     async def test_get_proposal_station(self):
-        proposal_station = await self.api.get_many()
+        proposal_station = await self.api_proposal_station.get_many()
         proposal_station = proposal_station['data'][0]
-        proposal_station = await self.api.get_one(proposal_station['id'])
+        proposal_station = await self.api_proposal_station.get_one(proposal_station['id'])
 
     #TODO do station first
     @pytest.mark.asyncio

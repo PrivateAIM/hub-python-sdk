@@ -10,7 +10,7 @@ readme = "README.md"
 python = "^3.11"
 yarl = "^1.9.4"
 aiohttp = "^3.9.1"
-pydantic = "^2.5.2"
+pydantic = "^1.10.14"
 python-dotenv = "^1.0.0"
 httpx = "^0.26.0"
 authup = {git = "https://github.com/authup/python-sdk.git"}

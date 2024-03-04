@@ -17,7 +17,6 @@ class ProposalStation(BaseModel):
     created_at: datetime
     updated_at: datetime
     proposal_id: str
-    proposal: Proposal
     proposal_realm_id: str
     station_id: str
     station_realm_id: str

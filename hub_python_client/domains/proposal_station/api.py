@@ -25,6 +25,7 @@ class ProposalStationAPI(BaseAPI):
         return response_json
 
     async def update(self, id: str, data: ProposalStation) -> ProposalStation:
+        print(f"update {data.model_dump()}")
         response = await self.client.post(f"/api/proposal-stations/{id}", json=data.model_dump())
         response.raise_for_status()
         response_json = response.json()
